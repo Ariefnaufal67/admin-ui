@@ -69,7 +69,7 @@ function App() {
         {/* sign in with google start */}
         <div className="mb-8">
           <button
-            className="h-12 flex items-center justify-center rounded-md text-sm w-full bg-gray-05 text-gray-01"
+            className="h-16 flex items-center justify-center rounded-md text-sm w-full bg-gray-05 text-gray-01"
             type="button"
           >
             <svg
