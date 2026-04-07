@@ -40,19 +40,19 @@ function App() {
                 id="password"
               />
             </div>
-            <div className="mt-3">
+            <div className="mt-3 flex items-center gap-2">
               <input
                 type="checkbox"
                 className="text-sm accent-primary"
                 name="status"
                 id="status"
               />
-              <label htmlFor="status" className="text-sm text-gray-01 ml-6">
+              <label htmlFor="status" className="text-sm text-gray-01">
                 Keep me signed in
               </label>
             </div>
             <button
-              className="rounded-md text-sm bg-primary w-full text-white"
+              className=" rounded-md text-sm bg-primary w-full text-white py-3 mt-6"
               type="submit"
             >
               Login
@@ -69,7 +69,7 @@ function App() {
         {/* sign in with google start */}
         <div className="mb-8">
           <button
-            className="h-16 flex items-center justify-center rounded-md text-sm w-full bg-gray-05 text-gray-01"
+            className="h-12 flex items-center justify-center rounded-md text-sm w-full bg-gray-05 text-gray-01"
             type="button"
           >
             <svg
