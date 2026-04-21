@@ -12,17 +12,17 @@ function Exercise() {
           <UserCard 
           name="Arief"
           email="arief@example.com"
-          street="123 Main St"
+          street="Jl.Indraprasta No.10"
           city="Ungaran"/>
           <UserCard 
           name="Naufal"
           email="naufal@example.com"
-          street="456 Oak Ave"
+          street="Jl.Imam Bonjol No.123"
           city="Semarang"/>
           <UserCard 
           name="Al-Azmi"
           email="al-azmi@example.com"
-          street="789 Pine Rd"
+          street="Jl.JatiMakmur No.456"
           city="Bekasi"/>
         </div>
       </div>
