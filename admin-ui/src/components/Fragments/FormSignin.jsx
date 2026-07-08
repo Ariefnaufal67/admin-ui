@@ -10,10 +10,19 @@ function FormSignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(email, password);
+    setLoading(true);
+    try {
+      await onSubmit(email, password);
+    } catch (err) {
+      // Error sudah ditangani (ditampilkan) di halaman Signin, di sini cukup
+      // pastikan tombol berhenti loading walau login gagal.
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -37,6 +46,7 @@ function FormSignIn(props) {
                 placeholder="hello@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full pl-10 pr-4 py-3 text-sm rounded-md bg-special-mainBg border border-gray-05 text-defaultBlack focus:border-primary focus:outline-none focus:ring-0 transition-colors"
               />
             </div>
@@ -58,6 +68,7 @@ function FormSignIn(props) {
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
                 className="w-full pl-10 pr-10 py-3 text-sm rounded-md bg-special-mainBg border border-gray-05 text-defaultBlack focus:border-primary focus:outline-none focus:ring-0 transition-colors"
               />
               <button
@@ -79,7 +90,9 @@ function FormSignIn(props) {
             />
           </div>
 
-          <Button>Login</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Loading.." : "Login"}
+          </Button>
         </form>
       </div>
       {/* form end */}

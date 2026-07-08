@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import Swal from 'sweetalert2';
 import AuthLayout from '../components/Layouts/AuthLayout';
 import FormSignin from '../components/Fragments/FormSignin';
 import { loginService } from '../services/authService';
@@ -10,14 +11,19 @@ function Signin() {
   const handleLogin = async (email, password) => {
     try {
       const { refreshToken } = await loginService(email, password);
-      login(refreshToken); 
+      login(refreshToken);
     } catch (err) {
-      console.error(err.msg);
+      Swal.fire({
+        icon: "error",
+        title: "Login gagal",
+        text: err?.msg || "Email atau password salah. Silakan coba lagi.",
+      });
+      throw err; // supaya FormSignin tahu proses submit selesai (gagal)
     }
   };
 
   return (
-    <AuthLayout title="Sign in to your account" type="login">
+    <AuthLayout title="Sign in to your account">
       <FormSignin onSubmit={handleLogin} />
     </AuthLayout>
   )

@@ -28,8 +28,8 @@
 // =========================================================================
 
 describe("Dashboard (Overview) Page", () => {
-  const email = Cypress.env("STUDENT_EMAIL") || "hello@example.com";
-  const password = Cypress.env("STUDENT_PASSWORD") || "123456";
+  const email = Cypress.env("STUDENT_EMAIL") || "student@example.com";
+  const password = Cypress.env("STUDENT_PASSWORD") || "password123";
 
   context("Ketika user belum login", () => {
     it("mengarahkan (redirect) ke halaman /login saat mencoba akses dashboard", () => {
