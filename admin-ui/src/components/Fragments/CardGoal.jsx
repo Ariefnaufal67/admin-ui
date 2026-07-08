@@ -31,7 +31,7 @@ function CardGoal(props) {
                   <Icon.Award />
                   <div className="ms-2">
                     <div>Target Achieved</div>
-                    <div className="font-bold text-xl text-black">
+                    <div className="font-bold text-xl text-defaultBlack">
                       ${data.presentAmount}
                     </div>
                   </div>
@@ -40,7 +40,7 @@ function CardGoal(props) {
                   <Icon.Target />
                   <div className="ms-2">
                     <div>This Month Target</div>
-                    <div className="font-bold text-xl text-black">
+                    <div className="font-bold text-xl text-defaultBlack">
                       ${data.targetAmount}
                     </div>
                   </div>

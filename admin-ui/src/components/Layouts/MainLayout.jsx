@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Backdrop, CircularProgress } from "@mui/material";
+import { FiSun, FiMoon } from "react-icons/fi";
 import Logo from "../Elements/Logo";
 import Input from "../Elements/Input";
 import Icon from "../Elements/Icon";
 import { ThemeContext } from "../../context/themeContext";
 import { AuthContext } from "../../context/authContext";
+import { DarkModeContext } from "../../context/darkModeContext";
 
 const menu = [
   { id: 1, name: "Overview", icon: <Icon.Overview />, link: "/" },
@@ -28,13 +31,34 @@ function MainLayout(props) {
   const { children } = props;
   const { theme, setTheme } = useContext(ThemeContext);
   const { user, logout } = useContext(AuthContext);
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  // Simulasikan proses logout (mis. bersih-bersih sesi) lalu jalankan logout sebenarnya
+  const handleLogout = () => {
+    setLoggingOut(true);
+    setTimeout(() => {
+      logout();
+    }, 1200);
+  };
 
   return (
     <>
+      {/* Backdrop + loader saat proses logout berlangsung */}
+      <Backdrop
+        open={loggingOut}
+        sx={{ color: "#fff", zIndex: (t) => t.zIndex.drawer + 1 }}
+      >
+        <div className="flex flex-col items-center gap-3">
+          <CircularProgress color="inherit" />
+          <span>Logging Out</span>
+        </div>
+      </Backdrop>
+
       <div className={`flex min-h-screen ${theme.name}`}>
 
         {/* ===== ASIDE / SIDEBAR ===== */}
-        <aside className="bg-defaultBlack w-28 sm:w-64 text-special-bg2 flex flex-col justify-between py-10 px-4">
+        <aside className="bg-[#191919] w-28 sm:w-64 text-special-bg2 flex flex-col justify-between py-10 px-4">
 
           {/* Bagian atas: Logo + Navigasi */}
           <div>
@@ -81,12 +105,21 @@ function MainLayout(props) {
                     onClick={() => setTheme(t)}
                   ></div>
                 ))}
+                <button
+                  type="button"
+                  onClick={toggleDarkMode}
+                  aria-label="Toggle dark mode"
+                  title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                  className="w-6 h-6 rounded-md cursor-pointer mb-2 flex items-center justify-center text-special-bg2 hover:text-white transition-colors"
+                >
+                  {darkMode ? <FiSun size={16} /> : <FiMoon size={16} />}
+                </button>
               </div>
             </div>
 
             {/* Logout */}
             <div
-              onClick={logout}
+              onClick={handleLogout}
               className="flex text-primary px-4 py-3 rounded-md cursor-pointer hover:bg-special-bg3 hover:font-bold transition-all"
             >
               <div className="mx-auto sm:mx-0">
@@ -120,7 +153,7 @@ function MainLayout(props) {
         <div className="bg-special-mainBg flex-1 flex flex-col">
 
           {/* Header */}
-          <div className="border border-b border-gray-05 px-6 py-4 flex justify-between items-center bg-white">
+          <div className="border border-b border-gray-05 px-6 py-4 flex justify-between items-center bg-special-card">
             {/* Kiri: Username + Date */}
             <div className="flex items-center">
               <div className="font-semibold text-defaultBlack me-3">Hello {user?.name}</div>
@@ -134,7 +167,7 @@ function MainLayout(props) {
               <Input
                 type="text"
                 placeholder="Search here..."
-                backgroundColor="bg-white"
+                backgroundColor="bg-special-card"
                 border="border-white"
               />
             </div>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import LabeledInput from "../Elements/Labeleninput";
 import CheckBox from "../Elements/CheckBox";
 import Button from "../Elements/Button";
-import Icon from "../Elements/Icon";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
@@ -24,12 +23,12 @@ function FormSignIn(props) {
         <form onSubmit={handleSubmit}>
           {/* Email field with icon */}
           <div className="mb-6">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-01 mb-1.5">
               Email Address
             </label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-02">
-                <Icon icon={FiMail} size={18} />
+                <FiMail size={18} />
               </span>
               <input
                 type="email"
@@ -38,19 +37,19 @@ function FormSignIn(props) {
                 placeholder="hello@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 text-sm rounded-md bg-special-mainBg border border-gray-300 text-gray-900 focus:border-primary focus:outline-none focus:ring-0 transition-colors"
+                className="w-full pl-10 pr-4 py-3 text-sm rounded-md bg-special-mainBg border border-gray-05 text-defaultBlack focus:border-primary focus:outline-none focus:ring-0 transition-colors"
               />
             </div>
           </div>
 
           {/* Password field with icon + show/hide toggle */}
           <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-01 mb-1.5">
               Password
             </label>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-02">
-                <Icon icon={FiLock} size={18} />
+                <FiLock size={18} />
               </span>
               <input
                 type={showPassword ? "text" : "password"}
@@ -59,14 +58,14 @@ function FormSignIn(props) {
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-10 py-3 text-sm rounded-md bg-special-mainBg border border-gray-300 text-gray-900 focus:border-primary focus:outline-none focus:ring-0 transition-colors"
+                className="w-full pl-10 pr-10 py-3 text-sm rounded-md bg-special-mainBg border border-gray-05 text-defaultBlack focus:border-primary focus:outline-none focus:ring-0 transition-colors"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-02 hover:text-gray-01 transition-colors"
               >
-                <Icon icon={showPassword ? FiEyeOff : FiEye} size={18} />
+                {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
               </button>
             </div>
           </div>
@@ -95,7 +94,7 @@ function FormSignIn(props) {
       <div className="mb-8">
         <Button type="button" variant="secondary">
           <span className="flex items-center justify-center gap-2">
-            <Icon icon={FcGoogle} size={22} />
+            <FcGoogle size={22} />
             Continue with Google
           </span>
         </Button>

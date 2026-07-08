@@ -8,7 +8,6 @@ import CardStatistic from "../components/Fragments/CardStatistic";
 import CardExpenseBreakdown from "../components/Fragments/CardExpenseBreakdown";
 import {
   transactions,
-  bills,
   expensesBreakdowns,
   goals,
   balances,
@@ -28,7 +27,7 @@ function Dashboard() {
           <CardGoal data={goals} />
         </div>
         <div className="sm:col-span-4">
-          <CardUpcomingBill data={bills} />
+          <CardUpcomingBill />
         </div>
 
         {/* Row 2 & 3 */}
